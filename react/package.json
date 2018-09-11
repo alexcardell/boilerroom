@@ -1,0 +1,80 @@
+{
+  "name": "boilerroom-react",
+  "version": "1.0.0",
+  "description": "boilerplate react",
+  "main": "index.js",
+  "author": "Alex J. Cardell",
+  "private": true,
+  "babel": {
+    "presets": [
+      "env",
+      "stage-2",
+      "react"
+    ]
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "enzyme": "^3.5.1",
+    "enzyme-adapter-react-16": "^1.4.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-css-modules": "^2.7.5",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.10.0",
+    "husky": "^0.14.3",
+    "jest": "^23.5.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.10.2",
+    "prop-types": "^15.6.2",
+    "react-hot-loader": "^3.1.3",
+    "stylelint": "^9.3.0",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "lint-staged": {
+    "ignore": [
+      "package.json"
+    ],
+    "linters": {
+      "*.{js,jsx}": [
+        "prettier --write",
+        "eslint --no-ignore --fix",
+        "git add --force"
+      ],
+      "*.{json,md,graphql}": [
+        "prettier --write",
+        "git add --force"
+      ],
+      "*.{css,less,styl,scss,sass,sss}": [
+        "stylelint --fix",
+        "git add --force"
+      ]
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "fix": "yarn run fix-js && yarn run fix-css",
+    "fix-css": "yarn run lint-css --fix",
+    "fix-js": "yarn run lint-js --fix",
+    "lint": "yarn run lint-js && yarn run lint-css",
+    "lint-css": "stylelint \"src/**/*.{css,less,styl,scss,sass,sss}\"",
+    "lint-js": "eslint --ignore-path .gitignore --ignore-pattern \"!**/.*\" .",
+    "precommit": "lint-staged && jest",
+    "start": "webpack-dev-server --hot --inline --progress --colors",
+    "test": "jest",
+    "test-cover": "yarn run test --coverage",
+    "test-watch": "yarn run test --watch --notify"
+  }
+}
