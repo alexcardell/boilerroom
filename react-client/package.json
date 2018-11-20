@@ -1,7 +1,7 @@
 {
-  "name": "boilerroom-react",
+  "name": "boilerroom-react-client",
   "version": "1.0.0",
-  "description": "boilerplate react",
+  "description": "boilerplate client-side react",
   "main": "index.js",
   "author": "Alex J. Cardell",
   "private": true,
