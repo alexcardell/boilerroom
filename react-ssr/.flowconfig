@@ -1,0 +1,15 @@
+[ignore]
+.*/node_modules/.*
+.*/__tests__/.*
+.*/dist/*
+.*/coverage/*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
