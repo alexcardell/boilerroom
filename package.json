@@ -9,5 +9,8 @@
   "devDependencies": {
     "lerna": "^3.13.0",
     "plop": "^2.2.1"
+  },
+  "scripts": {
+    "go": "plop"
   }
 }
