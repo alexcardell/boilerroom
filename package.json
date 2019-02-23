@@ -1,0 +1,12 @@
+{
+  "name": "boilerroom",
+  "version": "1.0.0",
+  "description": "boilerplate repo",
+  "main": "index.js",
+  "repository": "git@github.com:baubler/boilerroom.git",
+  "author": "baubler <29524087+baubler@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.13.0"
+  }
+}
