@@ -7,6 +7,7 @@
   "author": "baubler <29524087+baubler@users.noreply.github.com>",
   "license": "MIT",
   "devDependencies": {
-    "lerna": "^3.13.0"
+    "lerna": "^3.13.0",
+    "plop": "^2.2.1"
   }
 }
