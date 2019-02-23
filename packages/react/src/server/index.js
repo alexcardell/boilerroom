@@ -4,7 +4,7 @@ import express from 'express';
 import path from 'path';
 
 import template from './template';
-import App from './App';
+import App from '../client/App';
 
 const port = process.env.port || 3000;
 

@@ -42,11 +42,30 @@ module.exports = function(plop) {
             type: 'addMany',
             destination: './out',
             templateFiles: [
-                'packages/react-client/**',
+                'packages/react/**',
+                'packages/react/.*',
+                '!packages/react/**server**',
                 '!**/node_modules',
-                '!yarn.lock',
+                '!**/yarn.lock',
             ],
             base: 'packages/react-client',
+        }, {
+            when: function(response) {
+                return (
+                    response.projectType === 'Javascript'
+                    && response.projectType === 'React'
+                    && response.rendering === 'Server'
+                );
+            },
+            type: 'addMany',
+            destination: './out',
+            templateFiles: [
+                'packages/react/**',
+                'packages/react/.*',
+                '!**/node_modules',
+                '!**/yarn.lock',
+            ],
+            base: 'packages/react',
         }],
     });
 };
