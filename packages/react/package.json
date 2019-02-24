@@ -6,7 +6,9 @@
   "homepage": "",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "webpack": "webpack --mode=development",
+    "webpack:prod": "webpack --mode=production"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -14,13 +16,16 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.1.0",
+    "babel-loader": "^8.0.5",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.9.1",
     "express": "^4.16.4",
     "jest": "^24.1.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "supertest": "^3.4.2"
+    "supertest": "^3.4.2",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {}
 }

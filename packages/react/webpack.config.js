@@ -1,16 +1,16 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: ['react-hot-loader/patch', './src/App.js'],
+  entry: ['./src/client/index.js'],
   devServer: {
     contentBase: './dist',
     hot: true,
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        loaders: ['babel-loader'],
+        use: ['babel-loader'],
         exclude: /node_modules/,
       },
     ],
