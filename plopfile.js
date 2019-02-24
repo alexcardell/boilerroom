@@ -1,6 +1,6 @@
 module.exports = function(plop) {
     plop.setGenerator('Javascript', {
-        description: 'Generate a skeleton project',
+        description: 'Generate a Javascript project',
         prompts: [
             {
                 type: 'list',
@@ -47,5 +47,17 @@ module.exports = function(plop) {
 
             return actions;
         }
+    });
+
+    plop.setGenerator('Go', {
+        description: 'Generate a Go project',
+        prompts: [
+            {
+                type: 'confirm',
+                name: 'go',
+                message: 'Do you want a Go project?',
+            }
+        ],
+        actions: [],
     });
 };
