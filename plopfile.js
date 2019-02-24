@@ -22,15 +22,17 @@ module.exports = function(plop) {
 
             if (data.jsType === 'React') {
                 var templateFiles = [
-                    'packages/react/**/*',
+                    'packages/react/*',
                     'packages/react/.*',
+                    'packages/react/src/**/*',
+                    'packages/react/test/**/*',
                     '!**/node_modules',
                     '!**/yarn.lock',
                 ];
 
                 if (data.rendering === 'Client') {
-                    templateFiles.push('!packages/react/src/server/**/*');
-                    templateFiles.push('!packages/react/test/server/**/*');
+                    templateFiles.push('!packages/react/src/server/**');
+                    templateFiles.push('!packages/react/test/server/**');
                 }
 
                 var action = {
