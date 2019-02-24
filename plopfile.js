@@ -24,8 +24,8 @@ module.exports = function(plop) {
                 var templateFiles = [
                     'packages/react/*',
                     'packages/react/.*',
-                    'packages/react/src/**/*',
-                    'packages/react/test/**/*',
+                    'packages/react/src/**',
+                    'packages/react/test/**',
                     '!**/node_modules',
                     '!**/yarn.lock',
                 ];
