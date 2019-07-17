@@ -1,63 +1,86 @@
-module.exports = function(plop) {
-    plop.setGenerator('Javascript', {
-        description: 'Generate a Javascript project',
-        prompts: [
-            {
-                type: 'list',
-                name: 'jsType',
-                message: 'What type of Javascript project is this?',
-                choices: ['React', 'Node'],
-            }, {
-                when: function(response) {
-                    return response.jsType === 'React';
-                },
-                type: 'list',
-                name: 'rendering',
-                message: 'Client side or server side rendering?',
-                choices: ['Client', 'Server']
-            }
-        ],
-        actions: function(data) {
-            var actions = [];
+const commonPrompts = {
+    projectName: {
+        type: 'input',
+        name: 'projectName',
+        message: 'What is this project called?',
+    },
+};
 
-            if (data.jsType === 'React') {
-                var templateFiles = [
-                    'packages/react/*',
-                    'packages/react/.*',
-                    'packages/react/src/**',
-                    'packages/react/test/**',
-                    '!**/node_modules',
-                    '!**/yarn.lock',
-                ];
+const jsGenerator = {
+    description: 'Generate a Javascript project',
+    prompts: [
+        commonPrompts.projectName,
+        {
+            type: 'list',
+            name: 'jsType',
+            message: 'What type of Javascript project is this?',
+            choices: ['React'],
+        },
+        {
+            when: response => response.jsType === 'React',
+            type: 'list',
+            name: 'rendering',
+            message: 'Client side or server side rendering?',
+            choices: ['Client', 'Server'],
+        },
+    ],
+    actions: ({ rendering }) => {
+        const actions = [];
 
-                if (data.rendering === 'Client') {
-                    templateFiles.push('!packages/react/src/server/**');
-                    templateFiles.push('!packages/react/test/server/**');
-                }
+        const templateFiles = [
+            'packages/react/*',
+            'packages/react/.*',
+            'packages/react/src/**',
+            'packages/react/test/**',
+            '!**/node_modules',
+            '!**/yarn.lock',
+        ];
 
-                var action = {
-                    type: 'addMany',
-                    destination: './out',
-                    base: 'packages/react',
-                    templateFiles: templateFiles,
-                }
-
-                actions.push(action);
-            }
-
-            return actions;
+        if (rendering === 'Client') {
+            templateFiles.push('!packages/react/src/server/**');
+            templateFiles.push('!packages/react/test/server/**');
         }
-    });
 
-    plop.setGenerator('Go', {
-        description: 'Generate a Go project',
-        prompts: [
-            {
-                type: 'confirm',
-                name: 'go',
-                message: 'Do you want a Go project?',
-            }
-        ],
-        actions: [],
-    });
+        const action = {
+            type: 'addMany',
+            destination: './out',
+            base: 'packages/react',
+            templateFiles: templateFiles,
+        };
+
+        actions.push(action);
+
+        return actions;
+    },
+};
+
+// TODO implement. Do I need this? Can I run go commands?
+const goGenerator = {
+    description: 'Generate a Go project',
+    prompts: [],
+    actions: [],
+};
+
+// TODO implement
+const reEsyGenerator = {
+    description: 'Generates a ReasonML Native project, compiled with esy',
+    prompts: [],
+    actions: [],
+};
+
+// TODO implement
+const reBucklescriptGenerator = {
+    description: 'Generates a ReasonML Bucklescript project',
+    prompts: [],
+    actions: [],
+};
+
+module.exports = plop => {
+    plop.setGenerator('Javascript', jsGenerator);
+
+    plop.setGenerator('Go', goGenerator);
+
+    plop.setGenerator('ReasonML Native', reEsyGenerator);
+
+    plop.setGenerator('ReasonML Bucklescript', reBucklescriptGenerator);
 };
