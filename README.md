@@ -14,5 +14,7 @@ After installing, run `yarn go` and answer the questions to get started. See the
     - [ ] Node
         - [ ] ESLint
         - [ ] Prettier
-- [ ] Other languages TBD
+- [ ] ReasonML
+    - [ ] Native
+    - [ ] Bucklescript
    
