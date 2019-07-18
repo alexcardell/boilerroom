@@ -1,7 +1,7 @@
 open TestFramework;
 open App.Lib;
 
-describe("Playground", ({test}) => {
+describe("Sandbox", ({test}) => {
   test("first test", ({expect}) => {
     expect.bool(x()).toBe(true);
   });
