@@ -1,0 +1,45 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "keywords": [ "reason", "esy" ],
+  "esy": { "build": "refmterr dune build -p #{self.name}" },
+  "buildDirs": {
+    "test": {
+      "require": [ "app.lib", "rely.lib" ],
+      "main": "RunTests",
+      "name": "RunTests.exe",
+      "ocamloptFlags": [ "-linkall", "-g" ]
+    },
+    "lib": {
+      "require": [ "core" ],
+      "name": "app.lib",
+      "namespace": "App"
+    },
+    "exe": {
+      "require": [
+        "pastel.lib", "console.lib", "app.lib" ],
+      "name": "RunApp.exe",
+      "main": "RunApp"
+    }
+  },
+  "scripts": { "test": "esy x RunTests.exe", "run": "esy x RunApp.exe" },
+  "dependencies": {
+    "@esy-ocaml/reason": ">= 3.4.0 < 3.5.0",
+    "@opam/core": "v0.11.3",
+    "@opam/dune": "*",
+    "@opam/lwt": "4.2.1",
+    "@opam/lwt_ppx": "1.2.2",
+    "@reason-native/console": "*",
+    "@reason-native/pastel": "*",
+    "@reason-native/rely": "*",
+    "ocaml": "~4.6.0"
+  },
+  "devDependencies": {
+    "@opam/merlin": "*",
+    "pesy": "^0.4.1",
+    "reason-cli": "^0.0.0",
+    "refmterr": "*"
+  },
+  "license": "MIT",
+  "private": true
+}
