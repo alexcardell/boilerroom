@@ -11,6 +11,7 @@
     "plop": "^2.4.0"
   },
   "scripts": {
-    "go": "plop"
+    "go": "plop",
+    "clean": "rm -rf out/"
   }
 }
