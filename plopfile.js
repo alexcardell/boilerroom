@@ -28,23 +28,23 @@ const jsGenerator = {
         const actions = [];
 
         const templateFiles = [
-            'packages/react/*',
-            'packages/react/.*',
-            'packages/react/src/**',
-            'packages/react/test/**',
+            'packages/js-react/*',
+            'packages/js-react/.*',
+            'packages/js-react/src/**',
+            'packages/js-react/test/**',
             '!**/node_modules',
             '!**/yarn.lock',
         ];
 
         if (rendering === 'Client') {
-            templateFiles.push('!packages/react/src/server/**');
-            templateFiles.push('!packages/react/test/server/**');
+            templateFiles.push('!packages/js-react/src/server/**');
+            templateFiles.push('!packages/js-react/test/server/**');
         }
 
         const action = {
             type: 'addMany',
             destination: './out',
-            base: 'packages/react',
+            base: 'packages/js-react',
             templateFiles: templateFiles,
         };
 
