@@ -30,7 +30,7 @@
     "@reason-native/console": "*",
     "@reason-native/pastel": "*",
     "@reason-native/rely": "*",
-    "ocaml": "~4.8.0"
+    "ocaml": "~4.6.0"
   },
   "devDependencies": {
     "@opam/merlin": "*",
