@@ -68,3 +68,6 @@ workflows:
       - test-re-bs:
           requires:
             - build
+      - test-re-esy:
+          requires:
+            - build
