@@ -53,7 +53,7 @@ jobs:
           command: |
             echo 'export NPM_CONFIG_PREFIX="$HOME/.npm-global"' >> $BASH_ENV
             echo 'export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"' >> $BASH_ENV
-      - run: npm install -g esy@0.5.6
+      - run: npm install -g esy@0.5.8
       - run:
           name: Bootstrap project
           command: |
