@@ -26,7 +26,6 @@ jobs:
           root: .
           paths:
             - node_modules
-            - lib
 
   test-re-bs:
     <<: *defaults
