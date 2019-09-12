@@ -1,0 +1,63 @@
+version: 2.1
+
+aliases:
+  - &defaults
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:12
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run:
+          name: install
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+            - lib
+
+  test-re-bs:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test with react
+          command: |
+            yarn go "ReasonML Bucklescript" test y
+            cd out
+            yarn install
+            yarn test
+            cd ..
+            rm -rf out
+      - run:
+          name: Test without react
+          command: |
+            yarn go "ReasonML Bucklescript" test n
+            cd out
+            yarn install
+            yarn test
+            cd ..
+            rm -rf out
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - test-re-bs:
+          requires:
+            - build
