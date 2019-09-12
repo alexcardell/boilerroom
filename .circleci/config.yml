@@ -1,0 +1,74 @@
+version: 2.1
+
+aliases:
+  - &defaults
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:12
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run:
+          name: install
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+
+  test-re-bs:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test with react
+          command: |
+            .circleci/test-bs.sh "ReasonML Bucklescript" test y
+      - run:
+          name: Test without react
+          command: |
+            .circleci/test-bs.sh "ReasonML Bucklescript" test n
+
+  test-re-esy:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Setup environment variables
+          command: |
+            echo 'export NPM_CONFIG_PREFIX="$HOME/.npm-global"' >> $BASH_ENV
+            echo 'export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"' >> $BASH_ENV
+      - run: npm install -g esy@0.5.8
+      - run:
+          name: Bootstrap project
+          command: |
+            .circleci/test-esy.sh "ReasonML Native" test
+      - store_test_results:
+          path: "out/reports"
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - test-re-bs:
+          requires:
+            - build
+      # - test-re-esy:
+      #     requires:
+      #       - build
