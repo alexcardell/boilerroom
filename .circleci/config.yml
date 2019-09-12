@@ -36,23 +36,11 @@ jobs:
       - run:
           name: Test with react
           command: |
-            set -x
-            yarn install
-            yarn go "ReasonML Bucklescript" test y
-            cd out
-            yarn test
-            cd ..
-            rm -rf out
+            .circleci/test.sh "ReasonML Bucklescript" test y
       - run:
           name: Test without react
           command: |
-            set -x
-            yarn install
-            yarn go "ReasonML Bucklescript" test n
-            cd out
-            yarn test
-            cd ..
-            rm -rf out
+            .circleci/test.sh "ReasonML Bucklescript" test n
 
 workflows:
   version: 2
