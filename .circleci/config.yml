@@ -60,6 +60,7 @@ jobs:
             .circleci/test-esy.sh "ReasonML Native" test
       - store_test_results:
           path: "out/reports"
+
 workflows:
   version: 2
   main:
@@ -68,6 +69,6 @@ workflows:
       - test-re-bs:
           requires:
             - build
-      - test-re-esy:
-          requires:
-            - build
+      # - test-re-esy:
+      #     requires:
+      #       - build
