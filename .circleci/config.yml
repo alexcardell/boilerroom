@@ -37,18 +37,20 @@ jobs:
       - run:
           name: Test with react
           command: |
+            set -x
+            yarn install
             yarn go "ReasonML Bucklescript" test y
             cd out
-            yarn install
             yarn test
             cd ..
             rm -rf out
       - run:
           name: Test without react
           command: |
+            set -x
+            yarn install
             yarn go "ReasonML Bucklescript" test n
             cd out
-            yarn install
             yarn test
             cd ..
             rm -rf out
