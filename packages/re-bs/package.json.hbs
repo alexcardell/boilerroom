@@ -21,6 +21,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    {{#if react}}
+    "bs-enzyme": "^0.6.1",
+    "enzyme-adapter-react-16": "^1.14.0",
+    {{/if}}
     "@glennsl/bs-jest": "^0.4.5",
     "bs-platform": "^5.0.0",
     "reason-cli": "^3.3.3-macos-1",
@@ -28,8 +32,10 @@
     "lint-staged": "^8.0.4"
   },
   "dependencies": {
-    {{#if reasonReact}}
-    "reason-react": "^0.7.0"
+    {{#if react}}
+    "reason-react": "^0.7.0",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.1.2"
     {{/if}}
   },
   "husky": {

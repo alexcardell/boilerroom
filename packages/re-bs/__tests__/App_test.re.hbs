@@ -1,0 +1,44 @@
+{{!--
+  vim: syntax=reason
+--}}
+open Jest;
+open Expect;
+
+{{#if react}}
+open Enzyme;
+open Shallow;
+
+configureEnzyme(Enzyme.react_16_adapter());
+
+let setup = () => shallow(<App />);
+
+describe("App", () => {
+  test("has an o-root object", () => {
+    let wrapper = setup();
+
+    let expected = 1;
+    let received = wrapper |> find(".o-root") |> length;
+
+    expect(received) |> toBe(expected);
+  });
+
+  test("has an o-main object", () => {
+    let wrapper = setup();
+
+    let expected = 1;
+    let received = wrapper |> find(".o-main") |> length;
+
+    expect(received) |> toBe(expected);
+  });
+});
+{{else}}
+describe("Last item in list", () => {
+  test("returns empty string for empty list", () =>
+    App.last([]) |> expect |> toEqual(None)
+  );
+
+  test("returns last item", () =>
+    App.last(["a", "b", "c", "d"]) |> expect |> toEqual(Some("d"))
+  );
+});
+{{/if}}
