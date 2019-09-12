@@ -36,12 +36,30 @@ jobs:
       - run:
           name: Test with react
           command: |
-            .circleci/test.sh "ReasonML Bucklescript" test y
+            .circleci/test-bs.sh "ReasonML Bucklescript" test y
       - run:
           name: Test without react
           command: |
-            .circleci/test.sh "ReasonML Bucklescript" test n
+            .circleci/test-bs.sh "ReasonML Bucklescript" test n
 
+  test-re-esy:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Setup environment variables
+          command: |
+            echo 'export NPM_CONFIG_PREFIX="$HOME/.npm-global"' >> $BASH_ENV
+            echo 'export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"' >> $BASH_ENV
+      - run: npm install -g esy@0.5.6
+      - run:
+          name: Bootstrap project
+          command: |
+            .circleci/test-esy.sh "ReasonML Native" test
+      - store_test_results:
+          path: "out/reports"
 workflows:
   version: 2
   main:
